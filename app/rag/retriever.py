@@ -61,7 +61,8 @@ def retrieve(
             score_threshold=score_threshold,
         )
 
-        logger.info(f"Retrieved {len(results)} chunks above threshold {score_threshold}")
+        logger.info(
+            f"Retrieved {len(results)} chunks above threshold {score_threshold}")
         return results
 
     except EmbeddingError as e:

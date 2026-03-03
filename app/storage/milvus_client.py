@@ -32,7 +32,8 @@ def get_milvus_client() -> MilvusClient:
     """获取 Milvus 客户端单例"""
     global _client
     if _client is None:
-        raise MilvusError("Milvus client not initialized. Call init_milvus() first.")
+        raise MilvusError(
+            "Milvus client not initialized. Call init_milvus() first.")
     return _client
 
 
@@ -40,7 +41,8 @@ def get_collection() -> Collection:
     """获取 kb_vectors collection 实例"""
     global _collection
     if _collection is None:
-        raise MilvusError("Milvus collection not initialized. Call init_milvus() first.")
+        raise MilvusError(
+            "Milvus collection not initialized. Call init_milvus() first.")
     return _collection
 
 
@@ -240,8 +242,10 @@ def delete_by_collection_id(collection_id: str) -> int:
             collection_name=COLLECTION_NAME,
             filter=f'collection_id == "{collection_id}"',
         )
-        count = result.get("delete_count", 0) if isinstance(result, dict) else 0
-        logger.info(f"Deleted vectors for collection_id={collection_id}, count={count}")
+        count = result.get("delete_count", 0) if isinstance(
+            result, dict) else 0
+        logger.info(
+            f"Deleted vectors for collection_id={collection_id}, count={count}")
         return count
     except Exception as e:
         raise MilvusError(f"Failed to delete vectors: {e}") from e
@@ -255,8 +259,10 @@ def delete_by_dataset_id(dataset_id: str) -> int:
             collection_name=COLLECTION_NAME,
             filter=f'dataset_id == "{dataset_id}"',
         )
-        count = result.get("delete_count", 0) if isinstance(result, dict) else 0
-        logger.info(f"Deleted vectors for dataset_id={dataset_id}, count={count}")
+        count = result.get("delete_count", 0) if isinstance(
+            result, dict) else 0
+        logger.info(
+            f"Deleted vectors for dataset_id={dataset_id}, count={count}")
         return count
     except Exception as e:
         raise MilvusError(f"Failed to delete vectors: {e}") from e

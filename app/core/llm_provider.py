@@ -11,6 +11,7 @@ logger = logging.getLogger(__name__)
 
 class LLMResponse:
     """LLM 调用结果"""
+
     def __init__(
         self,
         content: str,
@@ -84,7 +85,8 @@ def _call_claude(
     try:
         import anthropic
     except ImportError:
-        raise LLMError("anthropic package not installed. Run: pip install anthropic")
+        raise LLMError(
+            "anthropic package not installed. Run: pip install anthropic")
 
     settings = get_settings()
     if not settings.ANTHROPIC_API_KEY:

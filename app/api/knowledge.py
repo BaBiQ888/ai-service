@@ -129,7 +129,8 @@ async def add_link_collection(
     _api_key: str = Depends(verify_api_key),
 ):
     """摄入网页链接 → 爬取 → 分块 → 向量化 → 存储"""
-    logger.info(f"Add link collection: dataset={req.dataset_id}, url={req.url}")
+    logger.info(
+        f"Add link collection: dataset={req.dataset_id}, url={req.url}")
 
     try:
         result = ingest_link(
@@ -156,7 +157,8 @@ async def add_file_collection(
     _api_key: str = Depends(verify_api_key),
 ):
     """摄入文件 → 解析 → 分块 → 向量化 → 存储"""
-    logger.info(f"Add file collection: filename={file.filename}, metadata={metadata}")
+    logger.info(
+        f"Add file collection: filename={file.filename}, metadata={metadata}")
 
     try:
         meta = json.loads(metadata)

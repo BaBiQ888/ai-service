@@ -46,7 +46,8 @@ def init_embedding() -> None:
             f"dimensions={dim}"
         )
     except Exception as e:
-        raise EmbeddingError(f"Failed to initialize embedding service: {e}") from e
+        raise EmbeddingError(
+            f"Failed to initialize embedding service: {e}") from e
 
 
 @retry(
@@ -108,7 +109,7 @@ def embed_documents(texts: list[str]) -> list[list[float]]:
 
     # 按 OpenAI 批量限制分批
     for i in range(0, len(texts), MAX_BATCH_SIZE):
-        batch = texts[i : i + MAX_BATCH_SIZE]
+        batch = texts[i: i + MAX_BATCH_SIZE]
         # 过滤空文本，记住索引
         non_empty = [(j, t) for j, t in enumerate(batch) if t.strip()]
 
@@ -128,7 +129,8 @@ def embed_documents(texts: list[str]) -> list[list[float]]:
             )
 
             # 构建结果，将空文本位置填零向量
-            batch_embeddings = [[0.0] * settings.EMBEDDING_DIMENSIONS] * len(batch)
+            batch_embeddings = [
+                [0.0] * settings.EMBEDDING_DIMENSIONS] * len(batch)
             for idx, emb_data in enumerate(response.data):
                 original_idx = non_empty[idx][0]
                 batch_embeddings[original_idx] = emb_data.embedding
@@ -143,7 +145,8 @@ def embed_documents(texts: list[str]) -> list[list[float]]:
                 f"Failed to embed batch {i // MAX_BATCH_SIZE}: {e}"
             ) from e
 
-    logger.info(f"Embedded {len(texts)} texts in {(len(texts) - 1) // MAX_BATCH_SIZE + 1} batch(es)")
+    logger.info(
+        f"Embedded {len(texts)} texts in {(len(texts) - 1) // MAX_BATCH_SIZE + 1} batch(es)")
     return all_embeddings
 
 

@@ -8,4 +8,5 @@ api_router = APIRouter()
 
 api_router.include_router(health_router, tags=["health"])
 api_router.include_router(chat_router, prefix="/api/v1", tags=["chat"])
-api_router.include_router(knowledge_router, prefix="/api/v1", tags=["knowledge"])
+api_router.include_router(
+    knowledge_router, prefix="/api/v1", tags=["knowledge"])

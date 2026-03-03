@@ -33,7 +33,8 @@ def build_context(
         return "", []
 
     # 按相关度排序（高→低）
-    sorted_chunks = sorted(retrieved_chunks, key=lambda x: x.get("score", 0), reverse=True)
+    sorted_chunks = sorted(
+        retrieved_chunks, key=lambda x: x.get("score", 0), reverse=True)
 
     # 组装上下文块
     context_parts = []
