@@ -36,7 +36,8 @@ def split_text(
         chunk_size=size,
         chunk_overlap=overlap,
         length_function=len,
-        separators=["\n\n", "\n", "。", ".", "！", "!", "？", "?", "；", ";", " ", ""],
+        separators=["\n\n", "\n", "。", ".", "！",
+                    "!", "？", "?", "；", ";", " ", ""],
     )
 
     chunks = splitter.split_text(text)
